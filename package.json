@@ -2,9 +2,13 @@
   "name": "rollup-plugin-node-to-cdn",
   "version": "0.1.0",
   "description": "rollup plugin used to translate local import statements to url's used in esModules",
-  "main": "index.js",
+  "main": "dist/cjs/rollup-plugin-node-to-cdn.js",
+  "module": "dist/es/rollup-plugin-node-to-cdn.js",
+  "jsnext:main": "dist/es/rollup-plugin-node-to-cdn.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "build": "rollup -c",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -12,6 +16,11 @@
   },
   "author": "Brion L Fuller II",
   "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
   "bugs": {
     "url": "https://github.com/brion-fuller/rollup-plugin-node-to-cdn/issues"
   },
@@ -20,5 +29,14 @@
     "estree-walker": "^0.6.0",
     "magic-string": "^0.25.2",
     "rollup-pluginutils": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "mocha": "^6.1.4",
+    "rollup": "^1.10.1",
+    "rollup-plugin-babel": "^4.3.2"
   }
 }
