@@ -1,23 +1,13 @@
-'use strict';
+import MagicString from "magic-string";
+import estreeWalker from "estree-walker";
+import rollupPluginutils from "rollup-pluginutils";
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var MagicString = _interopDefault(require('magic-string'));
-var estreeWalker = require('estree-walker');
-var rollupPluginutils = require('rollup-pluginutils');
-
-function nodeToCdn({
-  include,
-  exclude,
-  files = {}
-} = {}) {
+function nodeToCdn({ include, exclude, files = {} } = {}) {
   const filter = rollupPluginutils.createFilter(include, exclude);
   return {
     name: "localToCDN",
     options: opts => {
-      return { ...opts,
-        external: [...opts.external, ...Object.keys(files)]
-      };
+      return { ...opts, external: [...opts.external, ...Object.keys(files)] };
     },
 
     transform(code, id) {
@@ -27,8 +17,12 @@ function nodeToCdn({
       const _code = new MagicString(code);
 
       estreeWalker.walk(ast, {
-        enter: function (node, parent) {
-          if (parent && parent.type === "ImportDeclaration" && node.type === "Literal") {
+        enter: function(node, parent) {
+          if (
+            parent &&
+            parent.type === "ImportDeclaration" &&
+            node.type === "Literal"
+          ) {
             const cdnLocation = files[node.value];
 
             if (cdnLocation) {
@@ -43,9 +37,7 @@ function nodeToCdn({
         map: _code.generateMap()
       };
     }
-
   };
 }
 
-module.exports = nodeToCdn;
-//# sourceMappingURL=index.js.map
+export default nodeToCdn;
