@@ -1,0 +1,24 @@
+{
+  "name": "rollup-plugin-node-to-cdn",
+  "version": "0.1.0",
+  "description": "rollup plugin used to translate local import statements to url's used in esModules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brion-fuller/rollup-plugin-node-to-cdn.git"
+  },
+  "author": "Brion L Fuller II",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brion-fuller/rollup-plugin-node-to-cdn/issues"
+  },
+  "homepage": "https://github.com/brion-fuller/rollup-plugin-node-to-cdn#readme",
+  "dependencies": {
+    "estree-walker": "^0.6.0",
+    "magic-string": "^0.25.2",
+    "rollup-pluginutils": "^2.6.0"
+  }
+}
